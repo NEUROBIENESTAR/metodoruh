@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RUH — Sistema de Regulación Neuroemocional</title>
+<meta name="description" content="RUH es un sistema de regulación neuroemocional diseñado para reorganizar cómo procesas tu experiencia interna bajo alta exigencia. Test gratuito.">
+
+<!-- Vista previa al compartir en WhatsApp / Instagram / redes -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="RUH — Sistema de Regulación Neuroemocional">
+<meta property="og:description" content="¿Cómo te sientes hoy? Evalúa tu sistema nervioso en 5 preguntas.">
+<meta property="og:url" content="https://metodoruh.com">
+<meta property="og:image" content="https://metodoruh.com/og-ruh.jpg"><!-- REEMPLAZA: imagen 1200x630 con tu marca. Sin esto, WhatsApp no muestra ninguna vista previa. -->
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONFIGURA TUS LINKS AQUÍ (un solo lugar)
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+const RUH = {
+  blog:         "https://metodoruh.com/blog",
+  certificacion:"https://metodoruh.com/certificacion",
+  whatsapp:     "https://wa.me/529841083138",
+  correo:       "hola@ruh-metodo.com",
+  instagram:    "https://instagram.com/ruh.metodo",
+  tiktok:       "https://tiktok.com/@ruh.metodo",
+
+  /* Recursos para cuidadores */
+  miniguia:     "https://metodoruh.com/guia-cuidadores",       // la guía interactiva gratuita
+  guiaCompleta: "https://pay.PLATAFORMA-DE-PAGO.com/REEMPLAZA-ESTE-LINK", // tu link de checkout (Hotmart / MercadoPago / Stripe)
+
+  /* ── Interruptores: pon "true" el día que cada página/link exista de verdad.
+        Mientras esté en "false", el botón cae a WhatsApp con un mensaje ya armado,
+        para que nada se rompa si subes el sitio antes de tener todo listo. ── */
+  listo: {
+    miniguia:      false,
+    guiaCompleta:  false,
+    certificacion: false,
+    blog:          false,
+  }
+};
+</script>
+
+<!-- Analítica (opcional): pega tu ID real y descomenta para medir de dónde vienen tus ventas.
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TUIDAQUI"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TUIDAQUI');
+</script>
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ══ Sistema de diseño RUH (tomado de tu CSS original) ══ */
+:root{
+  --warm-white:#faf7f2; --beige-light:#f0e8d8; --beige:#e8d9c4;
+  --sand:#c8b89a; --sand-dark:#a89878; --gold:#c9a96e; --gold-light:#dfc28e;
+  --text-dark:#2c2416; --text-mid:#5c4e3a; --text-soft:#8c7e6e; --text-muted:#b0a090;
+}
+*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--warm-white); color:var(--text-dark);
+  -webkit-font-smoothing:antialiased; font-family:Inter,system-ui,-apple-system,sans-serif;
+  font-weight:300; overflow-x:hidden; line-height:1.65;
+}
+h1,h2,h3,h4{font-family:"Playfair Display",Georgia,serif;}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+
+@keyframes breathe-expand{0%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}100%{opacity:.6;transform:scale(1)}}
+@keyframes breathe-ring{0%{opacity:.2;transform:scale(.85)}50%{opacity:0;transform:scale(1.5)}100%{opacity:.2;transform:scale(.85)}}
+@keyframes breathe-glow{0%{box-shadow:0 0 20px 5px #c9a96e26}50%{box-shadow:0 0 60px 20px #c9a96e59}100%{box-shadow:0 0 20px 5px #c9a96e26}}
+@keyframes btn-breathe{0%,100%{transform:scale(1);box-shadow:0 4px 20px #c9a96e40}50%{transform:scale(1.025);box-shadow:0 8px 35px #c9a96e73}}
+@keyframes fade-in-up{0%{opacity:0;transform:translateY(24px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+@keyframes pulse-soft{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+.progress-bar{background:var(--beige);border-radius:1px;height:2px;overflow:hidden}
+.progress-fill{background:linear-gradient(90deg,var(--gold-light),var(--gold));border-radius:1px;height:100%;transition:width .5s cubic-bezier(.22,1,.36,1)}
+
+.modal-overlay{
+  z-index:100;backdrop-filter:blur(8px);background:#faf7f2f7;
+  justify-content:center;align-items:center;padding:40px 20px;
+  animation:fade-in .5s forwards;display:none;position:fixed;inset:0;overflow-y:auto;
+}
+.modal-overlay.open{display:flex}
+
+.grain-overlay{
+  pointer-events:none;z-index:1;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size:256px 256px;position:fixed;inset:0;
+}
+.ruh-watermark{
+  color:transparent;-webkit-text-stroke:1px #c9a96e12;letter-spacing:-.05em;
+  pointer-events:none;user-select:none;z-index:0;white-space:nowrap;
+  font-family:"Playfair Display",serif;font-size:clamp(180px,35vw,420px);font-weight:600;
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.section-line{background:var(--gold);opacity:.6;width:40px;height:1px;margin:0 auto 32px}
+
+.ruh-slider{
+  appearance:none;
+  background:linear-gradient(to right,var(--gold) 0%,var(--gold) var(--slider-val,50%),var(--beige) var(--slider-val,50%),var(--beige) 100%);
+  cursor:pointer;border-radius:2px;outline:none;width:100%;height:3px;transition:background .1s;
+}
+.ruh-slider::-webkit-slider-thumb{
+  appearance:none;background:var(--gold);border:3px solid var(--warm-white);cursor:pointer;
+  border-radius:50%;width:22px;height:22px;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 12px #c9a96e66;
+}
+.ruh-slider::-webkit-slider-thumb:hover{transform:scale(1.2);box-shadow:0 4px 20px #c9a96e99}
+.ruh-slider::-moz-range-thumb{background:var(--gold);border:3px solid var(--warm-white);cursor:pointer;border-radius:50%;width:22px;height:22px;box-shadow:0 2px 12px #c9a96e66}
+
+/* Selector de ruta */
+.selector{padding:5rem 0 2rem}
+.rutas{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;max-width:40rem;margin:0 auto}
+.ruta-btn{
+  flex:1;min-width:15rem;background:var(--warm-white);border:1.5px solid var(--beige);
+  border-radius:1.1rem;padding:1.8rem 1.6rem;text-align:left;transition:.25s;
+}
+.ruta-btn:hover,.ruta-btn:focus-visible{border-color:var(--gold);transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(201,169,110,.18)}
+.ruta-btn.activa{border-color:var(--gold);background:var(--beige-light)}
+.ruta-titulo{display:block;font-family:"Playfair Display",serif;font-size:1.15rem;
+  color:var(--text-dark);margin-bottom:.5rem}
+.ruta-desc{display:block;font-size:.86rem;color:var(--text-soft);line-height:1.5}
+.panel{animation:fade-in .5s ease}
+
+/* Puente cuidadores */
+.puente{background:var(--text-dark);color:var(--beige-light);padding:5.5rem 0;text-align:center}
+.puente .eyebrow{color:var(--gold-light)}
+.puente h2{color:var(--warm-white)}
+.puente .lead{color:#cabfa8}
+.productos{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;max-width:38rem;margin:2.6rem auto 0}
+@media(max-width:620px){.productos{grid-template-columns:1fr}}
+.producto{background:rgba(250,247,242,.05);border:1px solid #4a4030;border-radius:1rem;
+  padding:2rem 1.6rem;text-align:left}
+.producto .etiqueta{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-light);font-weight:600;margin-bottom:.9rem}
+.producto h4{font-size:1.25rem;font-weight:400;color:var(--warm-white);margin-bottom:.7rem}
+.producto p{font-size:.9rem;color:#b3a68d;margin-bottom:1.4rem;line-height:1.55}
+.producto .precio{font-family:"Playfair Display",serif;font-size:1.3rem;color:var(--gold-light);
+  margin-bottom:1.2rem}
+.producto a{display:inline-block;font-size:.8rem;letter-spacing:.06em;font-weight:500;
+  padding:.75rem 1.5rem;border-radius:2rem;width:100%;text-align:center;box-sizing:border-box}
+.producto.gratis a{background:none;border:1px solid var(--gold);color:var(--gold-light)}
+.producto.pago a{background:var(--gold);color:var(--text-dark)}
+.puente .nota{font-size:.8rem;color:#8c7e63;margin-top:2rem;font-style:italic}
+
+/* ══ Layout propio ══ */
+.envoltura{max-width:64rem;margin:0 auto;padding:0 1.6rem;position:relative;z-index:2}
+.envoltura-ancha{max-width:76rem;margin:0 auto;padding:0 1.6rem;position:relative;z-index:2}
+
+/* Nav */
+nav.ruh-nav{
+  position:sticky;top:0;z-index:50;background:rgba(250,247,242,.86);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);
+}
+.nav-inner{max-width:76rem;margin:0 auto;padding:1.1rem 1.6rem;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:600;letter-spacing:.06em;color:var(--text-dark)}
+.nav-links{display:flex;gap:2.2rem;font-size:.86rem;letter-spacing:.02em;color:var(--text-mid)}
+.nav-links a{transition:color .2s;border-bottom:1px solid transparent;padding-bottom:2px}
+.nav-links a:hover{color:var(--gold);border-color:var(--gold)}
+.nav-social{display:flex;gap:1rem}
+.nav-social a{width:2rem;height:2rem;display:grid;place-items:center;border:1px solid var(--beige);
+  border-radius:50%;color:var(--text-soft);font-size:.72rem;transition:.2s;}
+.nav-social a:hover{border-color:var(--gold);color:var(--gold)}
+@media(max-width:720px){.nav-links{display:none}}
+
+/* Hero */
+.hero{position:relative;padding:5.5rem 0 4.5rem;text-align:center;overflow:hidden}
+.eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  font-weight:500;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.6rem,8vw,4.2rem);line-height:1.06;font-weight:400;color:var(--text-dark)}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
+.hero .sub{max-width:26rem;margin:1.6rem auto 3rem;color:var(--text-soft);font-size:1.05rem}
+
+.slider-panel{max-width:28rem;margin:0 auto 3.4rem}
+.slider-labels{display:flex;justify-content:space-between;font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.9rem}
+.slider-estado{margin-top:1rem;font-family:"Playfair Display",serif;font-style:italic;
+  font-size:1.05rem;color:var(--text-mid);min-height:1.5em}
+
+.circulo-respira{position:relative;width:9rem;height:9rem;margin:0 auto 1.6rem;display:grid;place-items:center}
+.circulo-anillo{position:absolute;inset:0;border:1px solid var(--gold);border-radius:50%;
+  animation:breathe-ring 6s ease-in-out infinite}
+.circulo-nucleo{width:5.4rem;height:5.4rem;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--gold-light),var(--gold));
+  animation:breathe-expand 6s ease-in-out infinite, breathe-glow 6s ease-in-out infinite;
+  display:grid;place-items:center;color:var(--warm-white);font-family:"Playfair Display",serif;
+  font-style:italic;font-size:.92rem;letter-spacing:.02em;}
+
+.ambiente-btn{background:none;border:none;color:var(--text-soft);font-size:.82rem;
+  letter-spacing:.04em;border-bottom:1px solid var(--beige);padding-bottom:2px;transition:.2s}
+.ambiente-btn:hover{color:var(--gold);border-color:var(--gold)}
+.ambiente-btn.activo{color:var(--gold);border-color:var(--gold)}
+
+.cta{
+  display:inline-block;font-size:.86rem;letter-spacing:.08em;font-weight:500;
+  background:var(--gold);color:var(--warm-white);padding:.95rem 2.4rem;
+  border:none;border-radius:2rem;margin-top:2.2rem;animation:btn-breathe 4s ease-in-out infinite;
+  transition:transform .2s;
+}
+.cta:hover{transform:translateY(-2px)}
+.cta.hueco{background:none;border:1px solid var(--gold);color:var(--text-dark);animation:none}
+
+.hero-frase{font-family:"Playfair Display",serif;font-size:1.6rem;font-weight:500;
+  letter-spacing:.02em;color:var(--text-dark);margin-top:3.2rem;opacity:.85}
+
+.galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;max-width:44rem;margin:3.2rem auto 0}
+.galeria img{width:100%;height:9rem;object-fit:cover;border-radius:.9rem;filter:saturate(.82) sepia(.06)}
+@media(max-width:600px){.galeria{grid-template-columns:repeat(3,1fr);gap:.5rem}.galeria img{height:5.4rem;border-radius:.5rem}}
+
+/* Test */
+.seccion{padding:5.5rem 0}
+.seccion.beige{background:var(--beige-light)}
+.centro{text-align:center}
+.seccion h2{font-size:clamp(1.9rem,5vw,2.6rem);font-weight:400;line-height:1.14;margin:.5rem 0 1rem}
+.seccion .lead{max-width:30rem;margin:0 auto 3rem;color:var(--text-soft);font-size:1.02rem}
+
+.test-caja{max-width:32rem;margin:0 auto}
+.test-cuenta{font-size:.76rem;letter-spacing:.14em;color:var(--text-muted);margin-bottom:.6rem;text-align:right}
+.test-pregunta{font-family:"Playfair Display",serif;font-size:1.5rem;font-weight:400;
+  text-align:center;margin:2.2rem 0 2.4rem;line-height:1.3}
+.test-opciones{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.test-opciones button{
+  flex:1;min-width:9rem;background:var(--warm-white);border:1px solid var(--beige);
+  padding:1.1rem 1rem;border-radius:.9rem;font-size:.95rem;color:var(--text-mid);
+  transition:.2s;
+}
+.test-opciones button:hover{border-color:var(--gold);color:var(--text-dark);background:#fff}
+
+.diagnostico{text-align:center;max-width:30rem;margin:0 auto}
+.diagnostico .eyebrow{margin-bottom:1rem}
+.diagnostico p{font-size:1.08rem;color:var(--text-mid);margin-bottom:1.8rem}
+
+.oculto{display:none}
+
+/* Revelación */
+.revelacion{background:var(--text-dark);color:var(--warm-white);padding:6rem 0;text-align:center}
+.revelacion .frase{font-family:"Playfair Display",serif;font-size:clamp(1.7rem,4.6vw,2.5rem);
+  line-height:1.42;font-weight:400}
+.revelacion .frase b{color:var(--gold-light);font-weight:500}
+.revelacion .section-line{background:var(--gold-light)}
+
+/* Qué es RUH */
+.tags{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin:2.2rem 0 2.6rem}
+.tag{border:1px solid var(--gold);color:var(--text-mid);font-size:.82rem;
+  padding:.5rem 1.1rem;border-radius:2rem;letter-spacing:.01em}
+.cita{font-family:"Playfair Display",serif;font-style:italic;font-size:1.3rem;
+  color:var(--text-dark);max-width:28rem;margin:2rem auto;line-height:1.5}
+
+/* Cierre */
+.cierre{padding:6.5rem 0;text-align:center}
+.cierre h2 em{font-style:italic;color:var(--gold)}
+
+/* Footer */
+footer{background:var(--text-dark);color:var(--beige-light);padding:4rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.4rem;margin-bottom:2.6rem}
+@media(max-width:700px){.footer-grid{grid-template-columns:1fr;gap:2rem}}
+footer .logo{color:var(--warm-white)}
+footer p{color:#cabfa8;font-size:.92rem;margin-top:.8rem;max-width:20rem}
+footer h5{font-family:Inter,sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-light);margin-bottom:1rem;font-weight:600}
+footer .flinks a{display:block;color:#cabfa8;font-size:.9rem;margin-bottom:.6rem;transition:.2s}
+footer .flinks a:hover{color:var(--gold-light)}
+footer .fsocial{display:flex;gap:.9rem;margin-top:1.2rem}
+footer .fsocial a{width:2.1rem;height:2.1rem;border:1px solid #4a4030;border-radius:50%;
+  display:grid;place-items:center;color:#cabfa8;font-size:.7rem;transition:.2s}
+footer .fsocial a:hover{border-color:var(--gold);color:var(--gold-light)}
+.footer-bottom{border-top:1px solid #4a4030;padding-top:1.6rem;font-size:.78rem;color:#8c7e63;
+  display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;justify-content:space-between}
+
+/* Modal */
+.modal-caja{background:var(--warm-white);border-radius:1.4rem;max-width:26rem;width:100%;
+  padding:3rem 2.4rem 2.6rem;text-align:center;position:relative;box-shadow:0 30px 80px rgba(44,36,22,.25)}
+.modal-cerrar{position:absolute;top:1rem;right:1.2rem;background:none;border:none;
+  font-size:1.3rem;color:var(--text-muted);line-height:1}
+.modal-cerrar:hover{color:var(--text-dark)}
+.modal-inhala{font-family:"Playfair Display",serif;font-style:italic;color:var(--gold);
+  font-size:1.1rem;margin-bottom:1.6rem}
+.modal-caja h3{font-size:1.6rem;font-weight:400;margin-bottom:.9rem}
+.modal-caja p{color:var(--text-soft);font-size:.96rem;margin-bottom:1.8rem}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Flotantes: WhatsApp + Asistente */
+.flotantes{position:fixed;right:1.3rem;bottom:1.3rem;z-index:80;display:flex;flex-direction:column;align-items:flex-end;gap:.8rem}
+.flot-btn{
+  width:3.4rem;height:3.4rem;border-radius:50%;border:none;cursor:pointer;
+  display:grid;place-items:center;box-shadow:0 6px 20px rgba(44,36,22,.22);
+  transition:transform .2s;color:var(--warm-white);
+}
+.flot-btn:hover{transform:scale(1.06)}
+.flot-btn.wa{background:#25d366}
+.flot-btn.asist{background:var(--text-dark)}
+.flot-btn svg{width:1.7rem;height:1.7rem}
+
+.asist-panel{
+  width:min(21rem,86vw);max-height:70vh;overflow-y:auto;background:var(--warm-white);
+  border-radius:1rem;box-shadow:0 20px 50px rgba(44,36,22,.28);border:1px solid var(--beige);
+  display:none;
+}
+.asist-panel.abierto{display:block}
+.asist-cab{background:var(--text-dark);color:var(--warm-white);padding:1rem 1.2rem;
+  border-radius:1rem 1rem 0 0;display:flex;justify-content:space-between;align-items:center}
+.asist-cab p{margin:0;font-family:"Playfair Display",serif;font-size:1.05rem}
+.asist-cab span{display:block;font-size:.72rem;color:var(--gold-light);margin-top:.1rem}
+.asist-cerrar{background:none;border:none;color:var(--warm-white);font-size:1.2rem;cursor:pointer;line-height:1}
+.asist-aviso{font-size:.74rem;color:var(--text-soft);padding:.8rem 1.2rem 0;line-height:1.5;font-style:italic}
+.asist-lista{padding:.6rem 1.2rem 1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.asist-preg{
+  text-align:left;background:none;border:1px solid var(--beige);border-radius:.6rem;
+  padding:.65rem .8rem;font-size:.86rem;color:var(--text-mid);cursor:pointer;transition:.15s;
+}
+.asist-preg:hover{border-color:var(--gold)}
+.asist-resp{display:none;padding:.2rem .3rem .9rem;font-size:.84rem;color:var(--text-soft);line-height:1.55}
+.asist-resp.abierta{display:block}
+.asist-resp a{color:var(--gold);border-bottom:1px solid var(--gold);font-size:.8rem}
+</style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+<div class="ruh-watermark">RUH</div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="ruh-nav">
+  <div class="nav-inner">
+    <a class="logo" href="#inicio">RUH</a>
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a id="lnk-blog" href="#">Blog</a>
+      <a id="lnk-cert" href="#">Certificación</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="nav-social">
+      <a id="soc-ig" href="#" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+      <a id="soc-tt" href="#" aria-label="TikTok" target="_blank" rel="noopener">TT</a>
+      <a id="soc-wa" href="#" aria-label="WhatsApp" target="_blank" rel="noopener">WA</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero" id="inicio">
+  <div class="envoltura">
+    <p class="eyebrow reveal in">Sistema de Regulación Neuroemocional</p>
+    <h1 class="reveal in d1">¿Cómo te sientes<br><em>hoy?</em></h1>
+    <p class="sub reveal in d2">No lo pienses demasiado. Solo obsérvalo.</p>
+
+    <div class="slider-panel reveal in d3">
+      <div class="slider-labels"><span>Cargado</span><span>Estable</span></div>
+      <input type="range" min="0" max="100" value="50" class="ruh-slider" id="slider" style="--slider-val:50%">
+      <p class="slider-estado" id="slider-estado">Estado intermedio</p>
+    </div>
+
+    <div class="reveal in d4">
+      <div class="circulo-respira">
+        <div class="circulo-anillo"></div>
+        <div class="circulo-nucleo">Inhala…</div>
+      </div>
+      <button class="ambiente-btn" id="btn-ambiente">Activar ambiente sonoro</button>
+    </div>
+
+    <div><button class="cta" id="btn-continuar">Continuar</button></div>
+
+    <p class="hero-frase reveal" id="frase-ruh">RUH</p>
+
+    <div class="galeria reveal">
+      <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&q=70" alt="Naturaleza y calma" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600&q=70" alt="Luz entre árboles" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=600&q=70" alt="Agua serena" loading="lazy">
+    </div>
+  </div>
+</header>
+
+<!-- ═══ SELECTOR DE RUTA ═══ -->
+<section class="selector" id="selector">
+  <div class="envoltura centro">
+    <p class="eyebrow reveal">Antes de seguir</p>
+    <h2 class="reveal" style="margin-bottom:2.2rem">¿Cuál es tu situación?</h2>
+    <div class="rutas reveal">
+      <button class="ruta-btn" data-ruta="cuidadores">
+        <span class="ruta-titulo">Cuido a alguien más</span>
+        <span class="ruta-desc">Hijo, padre, pareja — tu desgaste viene de sostener a otra persona.</span>
+      </button>
+      <button class="ruta-btn" data-ruta="exigencia">
+        <span class="ruta-titulo">Cargo con alta exigencia profesional</span>
+        <span class="ruta-desc">Tu desgaste viene de sostener demasiado, demasiado tiempo, sin pausa.</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ PANEL · CUIDADORES ═══════════════════════ -->
+<div class="panel oculto" id="panel-cuidadores">
+  <section class="puente" id="cuidadores">
+    <div class="envoltura">
+      <p class="eyebrow reveal">Para quienes cuidan</p>
+      <h2 class="reveal">Si tu desgaste viene<br>de cuidar a alguien más</h2>
+      <p class="lead reveal">La sobrecarga del cuidado tiene su propia forma de agotar. Esto es lo que tenemos pensado específicamente para eso.</p>
+
+      <div class="productos reveal">
+        <div class="producto gratis">
+          <p class="etiqueta">Gratis</p>
+          <h4>Guía para Cuidadores</h4>
+          <p>Los 3 movimientos, micro-prácticas para el día a día y un mini-test de desgaste. Para empezar hoy.</p>
+          <a id="lnk-miniguia" href="#" target="_blank" rel="noopener">Descargar gratis</a>
+        </div>
+        <div class="producto pago">
+          <p class="etiqueta">Guía completa</p>
+          <h4>RUH para Cuidadores</h4>
+          <p>El protocolo completo de autocuidado, a tu ritmo, sin esperar a un grupo.</p>
+          <a id="lnk-guiacompleta" href="#" target="_blank" rel="noopener">Obtener la guía completa</a>
+        </div>
+      </div>
+      <p class="nota">¿Prefieres acompañamiento en vivo? El Programa RUH es un proceso de 11 sesiones en grupo — escríbenos por WhatsApp o correo.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ PANEL · ALTA EXIGENCIA ═══════════════════════ -->
+<div class="panel oculto" id="panel-exigencia">
+
+<!-- ═══ TEST ═══ -->
+<section class="seccion beige centro" id="test">
+  <div class="envoltura">
+    <p class="eyebrow reveal">Evalúa tu sistema nervioso</p>
+    <h2 class="reveal">Cinco preguntas.<br>Sin interpretación anticipada.</h2>
+    <p class="lead reveal">Solo observación.</p>
+
+    <div class="test-caja reveal">
+      <div class="progress-bar"><div class="progress-fill" id="barra-test" style="width:0%"></div></div>
+      <p class="test-cuenta" id="cuenta-test">01 / 05</p>
+
+      <div id="preguntas"></div>
+
+      <div class="diagnostico oculto" id="diagnostico">
+        <p class="eyebrow" style="margin-top:2rem">Tu diagnóstico</p>
+        <p>Esto es común en perfiles como el tuyo.</p>
+        <button class="cta" id="btn-vermetodo">Ver el método →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVELACIÓN ═══ -->
+<section class="revelacion centro" id="revelacion">
+  <div class="envoltura">
+    <div class="section-line reveal"></div>
+    <p class="frase reveal">
+      No estás fallando.<br>
+      Estás funcionando bajo <b>un sistema saturado.</b><br><br>
+      No es falta de control.<br>
+      Es sobrecarga <b>sin procesamiento.</b>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ QUÉ ES RUH ═══ -->
+<section class="seccion centro">
+  <div class="envoltura">
+    <p class="eyebrow reveal">El sistema</p>
+    <h2 class="reveal">¿Qué es RUH?</h2>
+    <p class="lead reveal" style="max-width:34rem">
+      RUH es un sistema de regulación neuroemocional diseñado para reorganizar cómo procesas tu
+      experiencia interna bajo alta exigencia. No es terapia convencional. No es mindfulness. Es un
+      protocolo estructurado de intervención sobre el sistema nervioso.
+    </p>
+    <p class="cita reveal">"El problema no es el estrés. Es cómo tu sistema lo procesa."</p>
+    <div class="tags reveal">
+      <span class="tag">Reducción del estrés percibido</span>
+      <span class="tag">Claridad mental</span>
+      <span class="tag">Mejor toma de decisiones</span>
+      <span class="tag">Mayor resiliencia</span>
+      <span class="tag">Sensación de control interno</span>
+      <span class="tag">Regulación autónoma</span>
+    </div>
+
+    <div class="productos reveal" style="margin-top:2.4rem">
+      <div class="producto pago">
+        <p class="etiqueta">Acceso individual</p>
+        <h4>Accede al método</h4>
+        <p>Da el primer paso para trabajar RUH de forma personal.</p>
+        <a href="#" id="lnk-acceder-panel">Acceder al método</a>
+      </div>
+      <div class="producto pago">
+        <p class="etiqueta">Para profesionales</p>
+        <h4>Certificación RUH</h4>
+        <p>Aprende a facilitar el método con otras personas.</p>
+        <a id="lnk-cert-2" href="#">Conoce la certificación</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /panel-exigencia -->
+
+<!-- ═══ CIERRE ═══ -->
+<section class="cierre beige-seccion centro" style="background:var(--beige-light)">
+  <div class="envoltura">
+    <p class="eyebrow reveal">Del ruido interno a la dirección</p>
+    <h2 class="reveal">No necesitas salir<br><em>de tu vida.</em></h2>
+    <p class="lead reveal">Necesitas aprender a procesarla diferente.</p>
+    <button class="cta reveal" id="btn-acceder">Acceder al método</button>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contacto">
+  <div class="envoltura-ancha">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#inicio">RUH</a>
+        <p>Sistema de regulación neuroemocional para personas que funcionan bajo alta exigencia.</p>
+        <div class="fsocial">
+          <a id="soc-ig-2" href="#" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+          <a id="soc-tt-2" href="#" aria-label="TikTok" target="_blank" rel="noopener">TT</a>
+          <a id="soc-wa-2" href="#" aria-label="WhatsApp" target="_blank" rel="noopener">WA</a>
+        </div>
+      </div>
+      <div>
+        <h5>Navegación</h5>
+        <div class="flinks">
+          <a href="#inicio">Inicio</a>
+          <a id="lnk-blog-2" href="#">Blog</a>
+          <a id="lnk-cert-3" href="#">Certificación</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <div class="flinks">
+          <a id="lnk-correo" href="#"></a>
+          <a id="lnk-wa-directo" href="#" target="_blank" rel="noopener">WhatsApp directo</a>
+        </div>
+        <p style="margin-top:1rem">México · disponible en línea</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 RUH — Sistema de Regulación Neuroemocional</span>
+      <span>Diseñado para regular, no solo verse bien.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-caja">
+    <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar">×</button>
+    <p class="modal-inhala">Inhala…</p>
+    <h3>Comenzar ahora</h3>
+    <p>Mientras preparamos tu acceso, respira con el ritmo.</p>
+    <a class="cta" id="modal-cta" href="#" target="_blank" rel="noopener">Quiero acceder al método</a>
+  </div>
+</div>
+
+<script>
+/* ── Link con reserva: si la página/checkout aún no existe (listo=false),
+      cae a WhatsApp con un mensaje ya armado en vez de romperse. ── */
+function conectaLink(id, urlReal, listo, mensajeSiNoListo, ids){
+  (ids || [id]).forEach(function(elId){
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (listo) {
+      el.href = urlReal;
+      el.removeAttribute('data-provisional');
+    } else {
+      el.href = RUH.whatsapp + '?text=' + encodeURIComponent(mensajeSiNoListo);
+      el.setAttribute('data-provisional', '1');
+      el.title = 'Próximamente aquí — por ahora te escribimos por WhatsApp';
+    }
+  });
+}
+
+conectaLink(null, RUH.blog, RUH.listo.blog,
+  'Hola, vi el blog de RUH y quiero que me avisen cuando esté disponible.',
+  ['lnk-blog','lnk-blog-2']);
+
+conectaLink(null, RUH.certificacion, RUH.listo.certificacion,
+  'Hola, quiero información sobre la Certificación RUH.',
+  ['lnk-cert','lnk-cert-2','lnk-cert-3']);
+
+conectaLink(null, RUH.miniguia, RUH.listo.miniguia,
+  'Hola, quiero la guía gratuita para cuidadores.',
+  ['lnk-miniguia']);
+
+conectaLink(null, RUH.guiaCompleta, RUH.listo.guiaCompleta,
+  'Hola, quiero obtener la guía completa de RUH para Cuidadores.',
+  ['lnk-guiacompleta']);
+
+/* ── Resto de links configurables ─────────────────────── */
+document.getElementById('soc-ig').href       = RUH.instagram;
+document.getElementById('soc-ig-2').href     = RUH.instagram;
+document.getElementById('soc-tt').href       = RUH.tiktok;
+document.getElementById('soc-tt-2').href     = RUH.tiktok;
+document.getElementById('soc-wa').href       = RUH.whatsapp;
+document.getElementById('soc-wa-2').href     = RUH.whatsapp;
+document.getElementById('lnk-wa-directo').href = RUH.whatsapp;
+document.getElementById('modal-cta').href    = RUH.whatsapp;
+document.getElementById('lnk-acceder-panel').addEventListener('click', function(e){ e.preventDefault(); abrirModalGlobal(); });
+const lc = document.getElementById('lnk-correo');
+lc.href = 'mailto:' + RUH.correo;
+lc.textContent = RUH.correo;
+
+/* ── Selector de ruta (cuidadores / alta exigencia) ───── */
+const rutaBtns = document.querySelectorAll('.ruta-btn');
+const paneles = { cuidadores: document.getElementById('panel-cuidadores'),
+                   exigencia: document.getElementById('panel-exigencia') };
+
+function elegirRuta(ruta, scroll){
+  Object.entries(paneles).forEach(([k, el]) => el.classList.toggle('oculto', k !== ruta));
+  rutaBtns.forEach(b => b.classList.toggle('activa', b.dataset.ruta === ruta));
+  // revela los elementos del panel recién mostrado
+  paneles[ruta].querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  if (scroll) paneles[ruta].scrollIntoView({behavior:'smooth', block:'start'});
+}
+rutaBtns.forEach(b => b.addEventListener('click', () => elegirRuta(b.dataset.ruta, true)));
+
+/* Deep-link: metodoruh.com#cuidadores o #exigencia preselecciona la ruta */
+const hashRuta = location.hash.replace('#','');
+if (hashRuta === 'cuidadores' || hashRuta === 'exigencia') {
+  elegirRuta(hashRuta, true);
+}
+
+/* ── Modal (accesible globalmente para el link dentro del panel) ── */
+function abrirModalGlobal(){ document.getElementById('modal').classList.add('open'); }
+
+/* ── Revelado al hacer scroll ─────────────────────────── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:.15});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── Slider Cargado / Estable ─────────────────────────── */
+const slider = document.getElementById('slider');
+const estado = document.getElementById('slider-estado');
+function actualizaSlider(){
+  const v = slider.value;
+  slider.style.setProperty('--slider-val', v + '%');
+  estado.textContent = v < 34 ? 'Cargado' : v > 66 ? 'Estable' : 'Estado intermedio';
+}
+slider.addEventListener('input', actualizaSlider);
+actualizaSlider();
+
+/* ── Ambiente sonoro (drone suave con Web Audio) ──────── */
+let audioCtx = null, osc = null, gain = null;
+document.getElementById('btn-ambiente').addEventListener('click', function(){
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    osc = audioCtx.createOscillator();
+    const osc2 = audioCtx.createOscillator();
+    gain = audioCtx.createGain();
+    osc.type = 'sine'; osc.frequency.value = 110;
+    osc2.type = 'sine'; osc2.frequency.value = 165;
+    gain.gain.value = 0;
+    osc.connect(gain); osc2.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc2.start();
+    this._osc2 = osc2;
+  }
+  const activo = this.classList.toggle('activo');
+  gain.gain.linearRampToValueAtTime(activo ? 0.035 : 0, audioCtx.currentTime + 0.8);
+  this.textContent = activo ? 'Ambiente sonoro activo' : 'Activar ambiente sonoro';
+});
+
+/* ── Continuar → baja al test ─────────────────────────── */
+document.getElementById('btn-continuar').addEventListener('click', () =>
+  document.getElementById('test').scrollIntoView({behavior:'smooth'}));
+
+/* ── Test de 5 preguntas ───────────────────────────────── */
+const PREGUNTAS = [
+  {t:"¿Tu mente se detiene cuando lo necesitas?", a:"Sí", b:"No"},
+  {t:"¿Te cuesta desconectar después del trabajo?", a:"Sí", b:"No"},
+  {t:"¿Sientes presión constante aunque todo esté bien?", a:"Sí", b:"No"},
+  {t:"¿Tomas decisiones con claridad o desde la saturación?", a:"Con claridad", b:"Desde saturación"},
+  {t:"¿Sientes desconexión interna?", a:"Sí", b:"No"},
+];
+let paso = 0;
+const cont = document.getElementById('preguntas');
+const barra = document.getElementById('barra-test');
+const cuenta = document.getElementById('cuenta-test');
+const diagnostico = document.getElementById('diagnostico');
+
+function pinta(){
+  if (paso >= PREGUNTAS.length) {
+    cont.classList.add('oculto');
+    cuenta.classList.add('oculto');
+    diagnostico.classList.remove('oculto');
+    barra.style.width = '100%';
+    return;
+  }
+  const q = PREGUNTAS[paso];
+  cuenta.textContent = String(paso+1).padStart(2,'0') + ' / 05';
+  barra.style.width = (paso / PREGUNTAS.length * 100) + '%';
+  cont.innerHTML = `
+    <p class="test-pregunta">${q.t}</p>
+    <div class="test-opciones">
+      <button data-v="a">${q.a}</button>
+      <button data-v="b">${q.b}</button>
+    </div>`;
+  cont.querySelectorAll('button').forEach(b =>
+    b.addEventListener('click', () => { paso++; pinta(); }));
+}
+pinta();
+
+document.getElementById('btn-vermetodo').addEventListener('click', () =>
+  document.getElementById('revelacion').scrollIntoView({behavior:'smooth'}));
+
+/* ── Modal ─────────────────────────────────────────────── */
+const modal = document.getElementById('modal');
+function abrirModal(){ modal.classList.add('open'); }
+function cerrarModal(){ modal.classList.remove('open'); }
+document.getElementById('btn-acceder').addEventListener('click', abrirModal);
+document.getElementById('modal-cerrar').addEventListener('click', cerrarModal);
+modal.addEventListener('click', e => { if (e.target === modal) cerrarModal(); });
+addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal(); });
+</script>
+<!-- ═══ FLOTANTES: WHATSAPP + ASISTENTE ═══ -->
+<div class="flotantes">
+  <div class="asist-panel" id="asist-panel">
+    <div class="asist-cab">
+      <div>
+        <p>Asistente RUH</p>
+        <span>Preguntas frecuentes</span>
+      </div>
+      <button class="asist-cerrar" id="asist-cerrar" aria-label="Cerrar">×</button>
+    </div>
+    <p class="asist-aviso">No es una persona ni una IA respondiendo en vivo — son respuestas ya escritas a lo más común que preguntan. Para algo puntual, usa el botón de WhatsApp.</p>
+    <div class="asist-lista" id="asist-lista"></div>
+  </div>
+  <button class="flot-btn asist" id="asist-toggle" aria-label="Abrir asistente RUH">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 10h8M8 14h5M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.3-3.9-.8L3 20l1-4.5C3.4 14.2 3 13.1 3 12c0-4.4 4-8 9-8s9 3.6 9 8Z"/></svg>
+  </button>
+  <a class="flot-btn wa" id="flot-wa" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.07L2 22l5.07-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.62 0-3.14-.44-4.45-1.2l-.32-.19-3.02.79.8-2.94-.2-.31A7.94 7.94 0 0 1 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Zm4.32-5.94c-.24-.12-1.4-.69-1.62-.77-.22-.08-.37-.12-.53.12-.16.24-.6.77-.74.93-.14.16-.27.18-.51.06-.24-.12-1-.37-1.9-1.17-.7-.62-1.18-1.4-1.31-1.63-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.28-.73-1.76-.19-.46-.39-.4-.53-.4-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.4-.57 1.6-1.12.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z"/></svg>
+  </a>
+</div>
+
+<script>
+document.getElementById('flot-wa').href = RUH.whatsapp + '?text=' +
+  encodeURIComponent('Hola, tengo una pregunta sobre RUH.');
+
+const FAQ = [
+  {q:'¿Qué es RUH exactamente?',
+   a:'Es un sistema de regulación neuroemocional: un protocolo estructurado para reorganizar cómo tu sistema nervioso procesa la sobrecarga, ya sea por alta exigencia profesional o por el desgaste de cuidar a alguien más.',
+   msg:'Hola, quiero saber más sobre qué es RUH.'},
+  {q:'¿Cuánto cuesta el Programa RUH?',
+   a:'El precio depende del formato (individual, grupal, o certificación para profesionales). Escríbenos y te decimos las opciones vigentes.',
+   msg:'Hola, quiero saber el precio del Programa RUH.'},
+  {q:'¿Cómo descargo la guía gratuita de cuidadores?',
+   a:'Está en la pestaña "Cuido a alguien más", más arriba en esta misma página — botón "Descargar gratis", sin costo y sin registro.',
+   msg:'Hola, no encontré el botón para descargar la guía gratuita.'},
+  {q:'¿En qué consiste la Certificación RUH?',
+   a:'Es para terapeutas y profesionales de salud mental que quieren facilitar el método con sus propios pacientes o grupos.',
+   msg:'Hola, quiero información sobre la Certificación RUH.'},
+  {q:'¿Es en línea o presencial?',
+   a:'El Programa RUH y la Certificación se ofrecen en línea, con acompañamiento en vivo por videollamada o en grupo, según el formato.',
+   msg:'Hola, quiero saber si el Programa RUH es en línea o presencial.'},
+];
+
+const lista = document.getElementById('asist-lista');
+FAQ.forEach((item, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'asist-preg';
+  btn.textContent = item.q;
+  const resp = document.createElement('div');
+  resp.className = 'asist-resp';
+  resp.innerHTML = item.a + '<br><a href="' + RUH.whatsapp + '?text=' +
+    encodeURIComponent(item.msg) + '" target="_blank" rel="noopener">Seguir por WhatsApp →</a>';
+  btn.addEventListener('click', () => resp.classList.toggle('abierta'));
+  lista.appendChild(btn);
+  lista.appendChild(resp);
+});
+
+const panel = document.getElementById('asist-panel');
+document.getElementById('asist-toggle').addEventListener('click', () => panel.classList.toggle('abierto'));
+document.getElementById('asist-cerrar').addEventListener('click', () => panel.classList.remove('abierto'));
+</script>
+
+</body>
+</html>
